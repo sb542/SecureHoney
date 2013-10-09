@@ -59,24 +59,29 @@ int main(int argc, char *argv[]) {
   }
 
   while(1) {
+    memset(&buffer, 0, sizeof(buffer));
     if ( (clientSocket = accept(welcomeSocket, NULL, NULL)) < 0) {
       printf("ERROR: can't call accept().\n");
       exit(EXIT_FAILURE);
     }
 
-    Readline(clientSocket, buffer, MAX_LINE-1);
-    //read(clientSocket, buffer, 255);
-    printf("Received: %s",buffer);
-    Writeline(clientSocket, buffer, strlen(buffer));
-
-    if( close(clientSocket) < 0) {
-        printf("ERROR: can't close socket");
-        exit(EXIT_FAILURE);
+    int rl;
+    while((rl = Readline(clientSocket, buffer, MAX_LINE-1)) > 0){
+      printf("Received: (%d chars) %s",rl-1,buffer);
+      if(strstr(buffer,"wget") != NULL){
+        printf("This is the url to get: %.*s", sizeof(buffer)-5, buffer + 5);
+      }
+      Writeline(clientSocket, buffer, strlen(buffer));
+      memset(&buffer, 0, sizeof(buffer));
     }
-
-    return 0;
-
   }
+  
+  if( close(clientSocket) < 0) {
+    printf("ERROR: can't close socket");
+    exit(EXIT_FAILURE);
+  }
+
+  return 0;
 
 }
 
@@ -131,5 +136,3 @@ int Writeline(int sockd, const void *vptr, int n) {
 
     return n;
 }
-
-// references: http://www.paulgriffiths.net/program/c/srcs/echoservsrc.html
