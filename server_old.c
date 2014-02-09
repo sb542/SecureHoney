@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
     printf("ERROR: invalid arguments.\n");
     exit(EXIT_FAILURE);
   }
+  
 
   if( (welcomeSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
     printf("ERROR: can't create welcome socket.\n");
