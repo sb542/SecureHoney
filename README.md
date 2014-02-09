@@ -5,7 +5,7 @@ SSH honeypot written in C
 
 Name:
 
-    Secure Honey
+    Secure Honey (http://SecureHoney.net)
 
 
 Description: 
