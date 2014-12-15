@@ -1,8 +1,3 @@
-SecureHoney
-===========
-
-SSH honeypot written in C
-
 Name:
 
     Secure Honey (http://SecureHoney.net)
