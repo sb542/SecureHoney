@@ -1,8 +1,7 @@
 #ifndef AUTH_H
+
 #define AUTH_H
-
 #include <libssh/libssh.h>
-
 #define MAXBUF 100
 
 struct connection {
