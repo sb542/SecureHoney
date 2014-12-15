@@ -1,9 +1,7 @@
 #include "config.h"
 #include "auth.h"
-
 #include <libssh/libssh.h>
 #include <libssh/server.h>
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
